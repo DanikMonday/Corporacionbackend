@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const FormSchema = mongoose.Schema({
+const FormSchema = mongoose.Schema({//Creamos el esquema 
     type: { type:String},
     nit_cedula: {type: Number},
     name: {type: String},
@@ -13,4 +13,4 @@ const FormSchema = mongoose.Schema({
         versionKey: false
 });
 
-module.exports = mongoose.model('Form', FormSchema);
+module.exports = mongoose.model('Form', FormSchema); //Importamos como un modelo

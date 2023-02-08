@@ -1,9 +1,11 @@
 const router = require('express').Router();
 const UserModel = require('../models/User');
 
-router.get("");
+//router.get("");
 
-router.post("/new/user", async (req, res)=> {
+
+//Agregar usuario
+router.post("/login", async (req, res)=> {
     try {
         const {name, email, password} = req.body;
         const user = await UserModel.create({
