@@ -8,7 +8,7 @@ const removeExten = (a) =>{
     return a.split('.').shift();//Toma el nombre y lo divide desde el punto volviendolo un array y con el método shift elimina el nombre pero lo retorna
 }
 
-fs.readdirSync(pathRouter).filter((file) =>{
+fs.readdirSync(pathRouter).filter((file) =>{//Pasamos la ruta sin extensión y así poder agregar rutas sin modificaciones
     const fileNoExt = removeExten(file);
     const noUse = ['index'].includes(fileNoExt);
     if(!noUse){

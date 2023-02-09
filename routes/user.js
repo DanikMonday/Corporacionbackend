@@ -4,7 +4,7 @@ const UserModel = require('../models/User');
 //router.get("");
 
 
-//Agregar usuario
+//Registrar usuario
 router.post("/login", async (req, res)=> {
     try {
         const {name, email, password} = req.body;
