@@ -6,7 +6,8 @@ const FormSchema = mongoose.Schema({//Creamos el esquema
     name: {type: String},
     email: {type: String},
     phone: {type: Number},
-    donation_name: {type: String},
+    destination_dona: {type: String},
+    certification: {type: String},
     aditional: {type: String} 
 }, {
         timestamps: true,
