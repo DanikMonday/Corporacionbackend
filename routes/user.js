@@ -1,15 +1,14 @@
 const router = require('express').Router();
 const UserModel = require('../models/User');
-
-//router.get("");
-
+const {encrypt, compare} = require("../helper/handleBcrypt");
 
 //Registrar usuario
-router.post("/login", async (req, res)=> {
+router.post("/sign", async (req, res)=> {
     try {
         const {name, email, password} = req.body;
+        const passwordCryp = await encrypt(password); //Encriptamos contraseña
         const user = await UserModel.create({
-            name, email, password
+            name, email, password: passwordCryp
         })
         res.send({data: user});
         //res.status(200).json(user);
@@ -17,5 +16,38 @@ router.post("/login", async (req, res)=> {
         console.log(error);
     }
 });
+
+//Ingresar usuario
+router.post("/login", async (req, res)=>{
+    try {
+        const {email, password} = req.body;
+        const user = await UserModel.findOne({email});
+        if(!user){
+            res.status(404);
+            res.send({error: "Usuario no encontrado"})
+        }
+
+        const lookPassword = await compare(password, user.password);
+        
+        if(lookPassword){ //Revisamos que la contraseña es correcta 
+            res.send({
+                data: user
+            });
+            return;
+        }
+
+        if(!lookPassword){
+            res.status(409);
+            res.send({
+                error: "Contraseña invalida"
+            });
+            return;
+        }
+
+    } catch (error) {
+        
+    }
+});
+
 
 module.exports = router;
