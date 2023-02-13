@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const FormSchema = mongoose.Schema({//Creamos el esquema 
-    type: { type:String},
+    type: {type:String},
     nit_cedula: {type: Number},
     name: {type: String},
     email: {type: String},
@@ -9,7 +9,7 @@ const FormSchema = mongoose.Schema({//Creamos el esquema
     destination_don: {type: String},
     certification: {type: String},
     aditional: {type: String},
-    state: {type: String}
+    state: {type: String, default: 'Verificando'}
 }, {
         timestamps: true,
         versionKey: false
