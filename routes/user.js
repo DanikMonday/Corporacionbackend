@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const UserModel = require('../models/User');
 const {encrypt, compare} = require("../helper/handleBcrypt");
-const tokenS = require('../helper/genToken')
+const {tokenS} = require('../helper/genToken');
 
 //Registrar usuario
 router.post("/sign", async (req, res)=> {
@@ -29,21 +29,19 @@ router.post("/login", async (req, res)=>{
         }
 
         const lookPassword = await compare(password, user.password);
-        const tokenSession = await tokenS(user)
+        const tokenSession = await tokenS(user);
         
         if(lookPassword){ //Revisamos que la contraseña es correcta 
             res.send({
                 data: user,
                 tokenSession
-            });
-            return;
+            })
+            
         }
 
         if(!lookPassword){
             res.status(409);
-            res.send({
-                error: "Contraseña invalida"
-            });
+            res.send({ error: "Contraseña invalida" });
             return;
         }
 
