@@ -1,11 +1,11 @@
 const router = require("express").Router();
 const FormModel = require("../models/Form");
 
-//Consultar formularios
+//Consultar Formularios
 router.get("/table", async (req, res)=>{
     try {
         const tableForms = await FormModel.find();
-        res.json(tableForms)
+        res.json(tableForms);
     } catch (error) {
         console.log(error);
     }
@@ -23,6 +23,18 @@ router.post("/new", async (req, res)=>{
         console.log(error);        
     }
 });
+
+//Modificar Formulario
+router.put("/modify/:id", async (req, res)=>{
+    try {
+        const updateForm = await FormModel.findByIdAndUpdate(req.params.id, {$set: req.body});
+        res.status(200).json("Donación Actualizada");
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+//Eliminar Formulario
 
 
 module.exports = router;
