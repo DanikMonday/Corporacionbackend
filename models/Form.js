@@ -8,7 +8,8 @@ const FormSchema = mongoose.Schema({//Creamos el esquema
     phone: {type: Number},
     destination_don: {type: String},
     certification: {type: String},
-    aditional: {type: String} 
+    aditional: {type: String},
+    state: {type: String}
 }, {
         timestamps: true,
         versionKey: false

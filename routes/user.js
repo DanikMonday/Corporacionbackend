@@ -34,9 +34,9 @@ router.post("/login", async (req, res)=>{
         if(lookPassword){ //Revisamos que la contraseña es correcta 
             res.send({
                 data: user,
-                tokenSession
+                tokenSession,
             })
-            
+            return;
         }
 
         if(!lookPassword){
@@ -46,7 +46,7 @@ router.post("/login", async (req, res)=>{
         }
 
     } catch (error) {
-        
+        console.log(error);
     }
 });
 
