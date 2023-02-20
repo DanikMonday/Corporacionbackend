@@ -1,4 +1,6 @@
+// Permite utilizar el manejador de las rutas 
 const router = require('express').Router();
+
 const UserModel = require('../models/User');
 const { encrypt, compare } = require("../helper/handleBcrypt");
 const { tokenS } = require('../helper/genToken');

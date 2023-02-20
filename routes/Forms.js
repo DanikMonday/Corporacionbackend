@@ -14,6 +14,7 @@ router.get("/table", async (req, res)=>{
 //Crear Formulario
 router.post("/new", async (req, res)=>{
     try {
+        
         const {type, nit_cedula, name, email, phone, destination_don, certification, aditional, state} = req.body;
         const newForm = await FormModel.create({
             type, nit_cedula, name, email, phone, destination_don, certification, aditional, state
