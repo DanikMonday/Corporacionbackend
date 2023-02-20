@@ -2,9 +2,10 @@ const router = require("express").Router();
 const FormModel = require("../models/Form");
 const {getList} = require("../controllers/controlform");
 const cAuth = require("../middleware/auth");
+const cRole = require("../middleware/role");
 
 //Consultar Formularios
-router.get("/table", cAuth, getList);
+router.get("/table", cAuth/*, cRole(['admin'])*/, getList);
 
 //Crear Formulario
 router.post("/new", async (req, res)=>{

@@ -3,7 +3,7 @@ const userModel = require("../models/User");
 
 const checkRole = (roles) => async (req, res, next) => {
     try {
-        const token = req.headers-authorization.split(' ').pop();
+        const token = req.headers.authorization.split(' ').pop();
         const tokenData = await verifyT(token);
         const userData = await userModel.findById(tokenData._id);
 
@@ -14,6 +14,8 @@ const checkRole = (roles) => async (req, res, next) => {
             res.send({ error: "No tiene permisos para acceder"})   
         }
     } catch (error) {
-
+        console.log(error);
     }
 };
+
+module.exports = checkRole;
