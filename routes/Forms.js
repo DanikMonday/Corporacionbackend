@@ -1,18 +1,18 @@
 const router = require("express").Router();
 const FormModel = require("../models/Form");
-const {getList} = require("../controllers/controlform");
+const {getForm, modForm, deleForm} = require("../controllers/controlform");
 const cAuth = require("../middleware/auth");
 const cRole = require("../middleware/role");
 
 //Consultar Formularios
-router.get("/table", cAuth/*, cRole(['admin'])*/, getList);
+router.get("/table", cAuth/*, cRole(['admin'])*/, getForm);
 
 //Crear Formulario
 router.post("/new", async (req, res)=>{
     try {
-        const {type, nit_cedula, name, email, phone, destination_don, certification, aditional, state} = req.body;
+        const {type, nit_cedula, name, email, phone, destination_don, certification, aditional} = req.body;
         const newForm = await FormModel.create({
-            type, nit_cedula, name, email, phone, destination_don, certification, aditional, state
+            type, nit_cedula, name, email, phone, destination_don, certification, aditional
         });
         res.send({data: newForm});
     } catch (error) {
@@ -21,24 +21,9 @@ router.post("/new", async (req, res)=>{
 });
 
 //Modificar Formulario
-router.put("/modify/:id", async (req, res)=>{
-    try {
-        const updateForm = await FormModel.findByIdAndUpdate(req.params.id, {$set: req.body});
-        res.status(200).json("Donación Actualizada");
-    } catch (error) {
-        console.log(error);
-    }
-});
+router.put("/modify/:id", cAuth, modForm);
 
 //Eliminar Formulario
-router.delete("/delete/:id", async (req, res)=>{
-    try {
-        const deleteForm = await FormModel.findByIdAndDelete(req.params.id);
-        res.status(200).json("Donación eliminada");
-    } catch (error) {
-        console.log(error);
-    }
-});
-
+router.delete("/delete/:id", cAuth, deleForm);
 
 module.exports = router;

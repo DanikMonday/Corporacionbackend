@@ -1,5 +1,5 @@
 const UserModel = require("../models/User");
-const { encrypt, compare } = require("../helper/handleBcrypt");
+const { encrypt } = require("../helper/handleBcrypt");
 
 //controlador de Registro de usuario
 const registerUser = async (req, res) =>{
