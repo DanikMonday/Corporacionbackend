@@ -1,8 +1,9 @@
 const router = require("express").Router();
 const FormModel = require("../models/Form");
+const cAuth = require("../middleware/auth");
 
 //Consultar Formularios
-router.get("/table", async (req, res)=>{
+router.get("/table", async (res)=>{
     try {
         const tableForms = await FormModel.find();
         res.json(tableForms);

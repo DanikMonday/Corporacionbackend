@@ -27,8 +27,8 @@ router.post("/login", async (req, res) => {
         const { email, password } = req.body;
         const user = await UserModel.findOne({ email });
         if (!user) {
-            res.status(404);
             res.send({ error: "Usuario no encontrado" })
+            res.status(404);
         }
 
         const lookPassword = await compare(password, user.password);
@@ -43,8 +43,8 @@ router.post("/login", async (req, res) => {
         }
 
         if (!lookPassword) {
-            res.status(409);
             res.send({ error: "Contraseña invalida" });
+            res.status(409);            
             return;
         }
 
@@ -53,7 +53,7 @@ router.post("/login", async (req, res) => {
     }
 });
 
-//Modificar Contraseña Usuario
+//Modificar Contraseña y correo Usuario
 router.put("/usermod/:id", async (req, res) => {
     try {
         const {password, email} = req.body;
