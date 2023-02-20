@@ -1,23 +1,13 @@
 const router = require('express').Router();
 const UserModel = require('../models/User');
+const registerUser = require('../controllers/controluser');
+const cAuth = require("../middleware/auth");
 const { encrypt, compare } = require("../helper/handleBcrypt");
 const { tokenS } = require('../helper/genToken');
 
 
-//Registrar usuario
-router.post("/sign", async (req, res) => {
-    try {
-        const { name, email, password } = req.body;
-        const passwordCryp = await encrypt(password); //Encriptamos contraseña
-        const user = await UserModel.create({
-            name, email, password: passwordCryp
-        })
-        res.send({ data: user });
-        //res.status(200).json(user);
-    } catch (error) {
-        console.log(error);
-    }
-});
+//Registrar usuario como Administrador
+router.post("/sign", cAuth, registerUser);
 
 //Ingresar usuario
 router.post("/login", async (req, res) => {
@@ -52,7 +42,7 @@ router.post("/login", async (req, res) => {
 });
 
 //Modificar Contraseña y correo Usuario
-router.put("/usermod/:id", async (req, res) => {
+router.put("/usermod/:id", /*async (req, res) => {
     try {
         const {password, email} = req.body;
         const passwordCryp = await encrypt(password);
@@ -61,6 +51,6 @@ router.put("/usermod/:id", async (req, res) => {
     } catch (error) {
         console.log(error);
     }
-});
+}*/);
 
 module.exports = router;
