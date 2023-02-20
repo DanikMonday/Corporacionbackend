@@ -21,7 +21,7 @@ router.post("/new", async (req, res)=>{
         });
         res.send({data: newForm});
     } catch (error) {
-        console.log(error);        
+        res.json("Error al crear formulario")        
     }
 });
 
