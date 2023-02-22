@@ -4,10 +4,10 @@ const { encrypt } = require("../helper/handleBcrypt");
 //controlador de Registro de usuario
 const registerUser = async (req, res) =>{
     try {
-        const { name, email, password } = req.body;
+        const { name, email, password, role } = req.body;
         const passwordCryp = await encrypt(password); //Encriptamos contraseña
         const user = await UserModel.create({
-            name, email, password: passwordCryp
+            name, email, password: passwordCryp, role
         });
         res.send({ data: user });
         //res.status(200).json(user);
