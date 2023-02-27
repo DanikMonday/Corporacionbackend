@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 // se crea un esquema(estructura de datos del modelo) para poder crear un modelo en mongoose
 const FormSchema = mongoose.Schema({
     type: {type:String},
-    nit_cedula: {type: Number},
+    nit_cedula: {type: String},
     name: {type: String},
     email: {type: String},
     phone: {type: Number},
