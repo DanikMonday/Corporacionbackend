@@ -1,10 +1,12 @@
 const router = require('express').Router();
 const UserModel = require('../models/User');
-const {registerUser, modUser} = require('../controllers/controluser');
+const {registerUser, modUser, getUser} = require('../controllers/controluser');
 const cAuth = require("../middleware/auth");
 const {compare} = require("../helper/handleBcrypt");
 const { tokenS } = require('../helper/genToken');
 
+//Mostrar usuarios registrados
+router.get("/users", getUser)
 
 //Registrar usuario como Administrador
 router.post("/sign", cAuth, registerUser);

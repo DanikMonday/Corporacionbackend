@@ -5,7 +5,7 @@ const cAuth = require("../middleware/auth");
 const cRole = require("../middleware/role");
 
 //Consultar Formularios
-router.get("/table", cAuth/*, cRole(['admin'])*/, getForm);
+router.get("/table"/*, cAuth, cRole(['admin'])*/, getForm);
 
 //Crear Formulario
 router.post("/new", async (req, res)=>{
