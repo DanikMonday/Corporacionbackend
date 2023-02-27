@@ -6,10 +6,10 @@ const {compare} = require("../helper/handleBcrypt");
 const { tokenS } = require('../helper/genToken');
 
 //Mostrar usuarios registrados
-router.get("/users", getUser)
+router.get("/users", /* cAuth,*/ getUser)
 
 //Registrar usuario como Administrador
-router.post("/sign", cAuth, registerUser);
+router.post("/sign",/* cAuth,*/ registerUser);
 
 //Ingresar usuario
 router.post("/login", async (req, res) => {

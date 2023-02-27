@@ -5,7 +5,7 @@ const { encrypt } = require("../helper/handleBcrypt");
 const getUser = async (req, res) =>{
     try {
         const getusers = await UserModel.find();
-        res.json(users);
+        res.json(getusers);
     } catch (error) {
         console.log(error);
     }
@@ -15,11 +15,16 @@ const getUser = async (req, res) =>{
 const registerUser = async (req, res) =>{
     try {
         const { name, email, password, role } = req.body;
+        const user = await UserModel.findOne({ email });
+        if (user) {
+            res.send({ error: "Ya hay un usuario registrado con ese correo" })
+            res.status(406);
+        }else{
         const passwordCryp = await encrypt(password); //Encriptamos contraseña
-        const user = await UserModel.create({
+        const ruser = await UserModel.create({
             name, email, password: passwordCryp, role
-        });
-        res.send({ data: user });
+        });       
+        res.send({ data: ruser });}
         //res.status(200).json(user);
     } catch (error) {
         console.log(error);
