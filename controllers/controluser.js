@@ -31,12 +31,12 @@ const registerUser = async (req, res) =>{
     }
 };
 
-//Controlador modificar contraseña y correo
+//Controlador modificar contraseña
 const modUser = async (req, res) =>{
     try {
-        const {password, email} = req.body;
+        const {password} = req.body;
         const passwordCryp = await encrypt(password);
-        const updateUser = await UserModel.findByIdAndUpdate(req.params.id, {email: email, password:passwordCryp});
+        const updateUser = await UserModel.findByIdAndUpdate(req.params.id, {password:passwordCryp});
         res.status(200).json("Usuario actualizado")
     } catch (error) {
         console.log(error);
