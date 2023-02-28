@@ -1,4 +1,6 @@
+// Permite utilizar el manejador de las rutas 
 const router = require('express').Router();
+
 const UserModel = require('../models/User');
 const {registerUser, modUser, getUser} = require('../controllers/controluser');
 const cAuth = require("../middleware/auth");
@@ -31,7 +33,7 @@ router.post("/login", async (req, res) => {
             })
             return;
         }
-
+ 
         if (!lookPassword) {
             res.send({ error: "Contraseña invalida" });
             res.status(409);            
