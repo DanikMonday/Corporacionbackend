@@ -6,7 +6,7 @@ const {compare} = require("../helper/handleBcrypt");
 const { tokenS } = require('../helper/genToken');
 
 //Mostrar usuarios registrados
-router.get("/users", /* cAuth,*/ getUser)
+router.get("/users", /* cAuth,*/ getUser);
 
 //Registrar usuario como Administrador
 router.post("/sign",/* cAuth,*/ registerUser);
@@ -44,6 +44,6 @@ router.post("/login", async (req, res) => {
 });
 
 //Modificar Contraseña y correo 
-router.put("/usermod/:id", cAuth, modUser);
+router.put("/usermod/:id", /*cAuth,*/ modUser);
 
 module.exports = router;

@@ -21,9 +21,9 @@ router.post("/new", async (req, res)=>{
 });
 
 //Modificar Formulario
-router.put("/modify/:id", cAuth, modForm);
+router.put("/modify/:id",/* cAuth,*/ modForm);
 
 //Eliminar Formulario
-router.delete("/delete/:id", cAuth, deleForm);
+router.delete("/delete/:id", /*cAuth,*/ deleForm);
 
 module.exports = router;
