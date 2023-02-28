@@ -16,7 +16,7 @@ try{
         // to : FormModel.get(),
         to: mailer,
         subject : 'Agradecimiento',
-        text : namer + 'prueba agradecimiento'
+        text : namer + 'prueba de agradecimiento'
     }
 
     const transport = nodemailer.createTransport(config);
