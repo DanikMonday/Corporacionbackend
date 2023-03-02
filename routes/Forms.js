@@ -15,7 +15,7 @@ router.post("/new", async (req, res)=>{
         const newForm = await FormModel.create({
             type, nit_cedula, name, email, phone, destination_don, certification, aditional
         });
-        sendMail(email , name, nit_cedula, phone, aditional);
+        sendMail(newForm);
         res.send({data: newForm});        
     } catch (error) {
         res.json("Error al crear formulario")        
