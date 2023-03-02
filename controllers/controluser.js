@@ -37,7 +37,7 @@ const modUser = async (req, res) =>{
         const {password} = req.body;
         const passwordCryp = await encrypt(password);
         const updateUser = await UserModel.findByIdAndUpdate(req.params.id, {password:passwordCryp});
-        res.status(200).json("Usuario actualizado")
+        res.status(200).json("Contraseña actualizada")
     } catch (error) {
         console.log(error);
     }
