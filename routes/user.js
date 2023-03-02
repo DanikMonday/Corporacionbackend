@@ -6,9 +6,11 @@ const {registerUser, modUser, getUser} = require('../controllers/controluser');
 const cAuth = require("../middleware/auth");
 const {compare} = require("../helper/handleBcrypt");
 const { tokenS } = require('../helper/genToken');
+const {recoveryMail} = require('../mail/configmail');
+
 
 //Mostrar usuarios registrados
-router.get("/users", /* cAuth,*/ getUser)
+router.get("/users", /* cAuth,*/ getUser);
 
 //Registrar usuario como Administrador
 router.post("/sign",/* cAuth,*/ registerUser);
@@ -45,7 +47,23 @@ router.post("/login", async (req, res) => {
     }
 });
 
-//Modificar Contraseña y correo 
-router.put("/usermod/:id", cAuth, modUser);
+//Modificar Contraseña 
+router.put("/usermod/:id", /*cAuth,*/ modUser);
+
+//Correo recuperar contraseña
+router.post("/recovery", async (req, res)=>{
+    const {email} = req.body;
+    const user = await UserModel.findOne({email});
+    if(user){
+        let a = "asd12345";
+        const newPass = await UserModel.findByIdAndUpdate(user.id, {password: a});
+        const nUser = await UserModel.findOne({email});
+        recoveryMail(nUser);
+        res.send("Correo enviado");
+    }else{
+        res.send({error: "No se encuentra registrado el correo"});
+    };
+});
+
 
 module.exports = router;
