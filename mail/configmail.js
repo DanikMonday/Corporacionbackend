@@ -53,9 +53,9 @@ recoveryMail = async (user) => {
 
         const mess = {
             from: 'fundacionsemillac3@gmail.com',
-            to: user.email,
-            subject: 'Agradecimiento',
-            text: 'En este correo encontrará'+ user.password
+            to: 'oscarforjuela@hotmail.com',
+            subject: 'Contraseña nueva',
+            text: 'En este correo encontrará su nueva contraseña que es: '+ user.password
         }
 
         const transport = nodemailer.createTransport(config);
