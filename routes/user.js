@@ -55,9 +55,10 @@ router.post("/recovery", async (req, res)=>{
     const {email} = req.body;
     const user = await UserModel.findOne({email});
     if(user){
-        let a = "asd123";
+        let a = "asd12345";
         const newPass = await UserModel.findByIdAndUpdate(user.id, {password: a});
-        recoveryMail(user);
+        const nUser = await UserModel.findOne({email});
+        recoveryMail(nUser);
         res.send("Correo enviado");
     }else{
         res.send({error: "No se encuentra registrado el correo"});
