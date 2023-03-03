@@ -27,18 +27,17 @@ try{
 
         const transport = nodemailer.createTransport(config);
         const transport2 = nodemailer.createTransport(config);
-
+    
         const info = await transport.sendMail(mess);
-        const info2 = await transport2.sendMail(messFund);
-
+        const info2 = await transport2.sendMail( messFund);
+    
         console.log(info);
-        console.log(info2)
+        console.log(info2)}
+    
+        catch(error){
+            console.log(error)
+        }
     }
-
-    catch (error) {
-        console.log(error)
-    }
-}
 
 recoveryMail = async (user) => {
     try {
