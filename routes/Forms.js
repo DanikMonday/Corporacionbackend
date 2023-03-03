@@ -3,7 +3,7 @@ const FormModel = require("../models/Form");
 const {getForm, modForm, deleForm} = require("../controllers/controlform");
 const cAuth = require("../middleware/auth");
 const cRole = require("../middleware/role");
-const sendMail = require("../mail/configmail")
+const {sendMail} = require("../mail/configmail")
 
 //Consultar Formularios
 router.get("/table"/*, cAuth, cRole(['admin'])*/, getForm);

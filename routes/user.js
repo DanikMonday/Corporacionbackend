@@ -37,7 +37,7 @@ router.post("/login", async (req, res) => {
         }
 
         if (!lookPassword) {
-            res.send({ error: "Contraseña invalida" });
+            res.send({error: "Contraseña invalida"});
             res.status(409);
             return;
         }
@@ -55,12 +55,12 @@ router.post("/recovery", async (req, res) => {
     const { email } = req.body;
     const user = await UserModel.findOne({ email });
     if (user) {
-        let a = 1254636548 * Math.random(5);
-        a = "a" + Math.floor(Math.random() * a);
-        console.log(a);
-        const passwordCryp = await encrypt(a);
+        let pass = 1254636548 * Math.random(5);
+        pass = "a" + Math.floor(Math.random() * pass);
+        console.log(pass);
+        const passwordCryp = await encrypt(pass);
         const newPass = await UserModel.findByIdAndUpdate(user.id, { password: passwordCryp });
-        recoveryMail(a);
+        recoveryMail(pass);
         res.send("Correo enviado");
     } else {
         res.send({ error: "No se encuentra registrado el correo" });
