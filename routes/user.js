@@ -38,7 +38,7 @@ router.post("/login", async (req, res) => {
         }
 
         if (!lookPassword) {
-            res.send({error: "Contraseña invalida"});
+            res.send({error: "Contraseña invalidaa"});
             res.status(409);
             return;
         }
