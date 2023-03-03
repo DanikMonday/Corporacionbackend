@@ -29,11 +29,12 @@ router.post("/login", async (req, res) => {
         const tokenSession = await tokenS(user);
 
         if (lookPassword) { //Revisamos que la contraseña es correcta 
-            res.send({
+            /*res.send({
                 data: user,
                 tokenSession,
             })
-            return;
+            return;*/
+            res.cookie('token', tokenSession).json("Bienvenido" + tokenSession);            
         }
 
         if (!lookPassword) {

@@ -53,7 +53,7 @@ recoveryMail = async (user) => {
 
         const mess = {
             from: fundacion,
-            to: 'oscarforjuela@hotmail.com',
+            to: user.email,
             subject: 'Contraseña nueva',
             text: 'En este correo encontrará su nueva contraseña que es: '+ user
         }

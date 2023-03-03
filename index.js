@@ -12,7 +12,10 @@ const connectionOptions ={ useUnifiedTopology: true,
 app.use(express.json());
 app.use(cors());
 
-mongoose.connect("mongodb://127.0.0.1/FundacionSemillas").then(() => console.log("Connected Successfully")).catch((err) => console.log(err));
+//mongodb+srv://fundacionsemillac3:pHTR88Zb1xg4K1aR@fundacionsemilladonacio.j2cjyrm.mongodb.net/?retryWrites=true&w=majority
+//mongodb://127.0.0.1:27017/FundacionSemillas
+
+mongoose.connect("mongodb://127.0.0.1:27017/FundacionSemillas").then(() => console.log("Connected Successfully")).catch((err) => console.log(err));
 
 app.use("/", require('./routes'));
 
