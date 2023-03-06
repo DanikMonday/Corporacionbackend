@@ -11,7 +11,8 @@ const getForm = async (req, res) =>{
 
 const modForm = async (req, res) =>{
     try {
-        const updateForm = await FormModel.findByIdAndUpdate(req.params.id, {$set: req.body});
+        const {state} = req.body;
+        const updateForm = await FormModel.findByIdAndUpdate(req.params.id, {state});
         res.status(200).json("Donación Actualizada");
     } catch (error) {
         console.log(error);

@@ -6,7 +6,7 @@ const cRole = require("../middleware/role");
 const {sendMail} = require("../mail/configmail")
 
 //Consultar Formularios
-router.get("/table"/*, cAuth, cRole(['admin'])*/, getForm);
+router.get("/table", cAuth/*, cRole(['admin'])*/, getForm);
 
 //Crear Formulario
 router.post("/new", async (req, res)=>{

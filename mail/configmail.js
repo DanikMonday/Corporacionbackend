@@ -39,7 +39,7 @@ try{
         }
     }
 
-recoveryMail = async (user) => {
+recoveryMail = async (user, pass) => {
     try {
         const config = {
             host: 'smtp.gmail.com',
@@ -54,7 +54,7 @@ recoveryMail = async (user) => {
             from: fundacion,
             to: user.email,
             subject: 'Contraseña nueva',
-            text: 'En este correo encontrará su nueva contraseña que es: '+ user
+            text: 'En este correo encontrará su nueva contraseña que es: '+ pass
         }
 
         const transport = nodemailer.createTransport(config);

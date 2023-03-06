@@ -21,27 +21,29 @@ router.post("/login", async (req, res) => {
         const { email, password } = req.body;
         const user = await UserModel.findOne({ email });
         if (!user) {
-            res.send({ error: "Usuario no encontrado" })
+            res.send({ message: "Usuario no encontrado" })
             res.status(404);
-        }
-
+        }else{
+        
         const lookPassword = await compare(password, user.password);
         const tokenSession = await tokenS(user);
 
-        if (lookPassword) { //Revisamos que la contraseña es correcta 
-            /*res.send({
+        if (lookPassword) { //Revisamos que la contraseña es correcta y retornamos los siguientes datos
+            res.send({
                 data: user,
-                tokenSession,
+                token: tokenSession,
+                message: "Bienvenido"
             })
-            return;*/
-            res.cookie('token', tokenSession).json("Bienvenido" + tokenSession);            
+            /*res.cookie('token', tokenSession, {maxAge: 10000 *60, httpOnly: true, secure: true, sameSite: 'lax'});
+            res.send({message: "Bienvenido"});*/
+            
         }
 
         if (!lookPassword) {
-            res.send({error: "Contraseña invalidaa"});
+            res.send({message: "Contraseña invalida"});
             res.status(409);
             return;
-        }
+        }}
 
     } catch (error) {
         console.log(error);
@@ -61,8 +63,8 @@ router.post("/recovery", async (req, res) => {
         console.log(pass);
         const passwordCryp = await encrypt(pass);
         const newPass = await UserModel.findByIdAndUpdate(user.id, { password: passwordCryp });
-        recoveryMail(pass);
-        res.send("Correo enviado");
+        recoveryMail(user, pass);
+        res.send({message:"Correo enviado"});
     } else {
         res.send({ error: "No se encuentra registrado el correo" });
     };

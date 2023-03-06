@@ -4,8 +4,9 @@ require("dotenv").config();
 const tokenS = async (user) => {//Genera un token firmado
     return jwt.sign(
         {
-            _id: user._id, //firmamos estos dos atributos con el token
-            role: user.role
+            _id: user._id, //firmamos estos tres atributos con el token
+            role: user.role,
+            names: user.name
         },
         process.env.JWT_SECRET,
         {
