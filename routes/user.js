@@ -66,7 +66,7 @@ router.post("/recovery", async (req, res) => {
         recoveryMail(user, pass);
         res.send({message:"Correo enviado"});
     } else {
-        res.send({ error: "No se encuentra registrado el correo" });
+        res.send({ error: "No se encuentra registrado el correo ingresado" });
     };
 });
 
