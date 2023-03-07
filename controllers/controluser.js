@@ -28,8 +28,7 @@ const registerUser = async (req, res) => {
                 data: ruser,
                 message: "Usuario Registrado"
             });
-        }
-        //res.status(200).json(user);
+        }        
     } catch (error) {
         console.log(error);
     }
