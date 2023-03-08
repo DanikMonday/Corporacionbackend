@@ -9,7 +9,7 @@ const { tokenS } = require('../helper/genToken');
 const { recoveryMail } = require('../mail/configmail');
 
 //Registrar usuario como Administrador
-router.post("/sign",/* cAuth,*/ registerUser);
+router.post("/sign", cAuth, registerUser);
 
 //Ingresar usuario
 router.post("/login", async (req, res) => {
@@ -29,10 +29,7 @@ router.post("/login", async (req, res) => {
                 data: user,
                 token: tokenSession,
                 message: "Bienvenido"
-            })
-            /*res.cookie('token', tokenSession, {maxAge: 10000 *60, httpOnly: true, secure: true, sameSite: 'lax'});
-            res.send({message: "Bienvenido"});*/
-            
+            })                      
         }
 
         if (!lookPassword) {
