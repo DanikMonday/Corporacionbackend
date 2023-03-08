@@ -1,16 +1,6 @@
 const UserModel = require("../models/User");
 const { encrypt } = require("../helper/handleBcrypt");
 
-//controlador visualizar usuarios registrados
-const getUser = async (req, res) => {
-    try {
-        const getusers = await UserModel.find();
-        res.json(getusers);
-    } catch (error) {
-        console.log(error);
-    }
-};
-
 //controlador de Registro de usuario
 const registerUser = async (req, res) => {
     try {
@@ -34,16 +24,4 @@ const registerUser = async (req, res) => {
     }
 };
 
-//Controlador modificar contraseña
-const modUser = async (req, res) => {
-    try {
-        const { password } = req.body;
-        const passwordCryp = await encrypt(password);
-        const updateUser = await UserModel.findByIdAndUpdate(req.params.id, { password: passwordCryp });
-        res.status(201).json("Contraseña actualizada");
-    } catch (error) {
-        console.log(error);
-    }
-};
-
-module.exports = { registerUser, modUser, getUser };
+module.exports = { registerUser};

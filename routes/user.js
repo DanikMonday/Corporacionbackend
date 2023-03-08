@@ -8,10 +8,6 @@ const { compare } = require("../helper/handleBcrypt");
 const { tokenS } = require('../helper/genToken');
 const { recoveryMail } = require('../mail/configmail');
 
-
-//Mostrar usuarios registrados
-router.get("/users", /* cAuth,*/ getUser);
-
 //Registrar usuario como Administrador
 router.post("/sign",/* cAuth,*/ registerUser);
 
@@ -49,9 +45,6 @@ router.post("/login", async (req, res) => {
         console.log(error);
     }
 });
-
-//Modificar Contraseña 
-router.put("/usermod/:id", /*cAuth,*/ modUser);
 
 //Correo recuperar contraseña
 router.post("/recovery", async (req, res) => {

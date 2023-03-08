@@ -9,7 +9,7 @@ const FormSchema = mongoose.Schema({
     email: {type: String},
     phone: {type: Number},
     destination_don: {type: String},
-    certification: {type: String},
+    certification: {type: String, default: 'Si'},
     aditional: {type: String},
     state: {type: String, default: 'Verificando'}
 }, {
