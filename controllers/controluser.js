@@ -7,7 +7,7 @@ const registerUser = async (req, res) => {
         const { name, email, password, role } = req.body;
         const user = await UserModel.findOne({ email });
         if (user) {
-            res.send({ error: "Ya hay un usuario registrado con ese correo" })
+            res.send({ message: "Ya hay un usuario registrado con ese correo" })
             res.status(406);
         } else {
             const passwordCryp = await encrypt(password); //Encriptamos contraseña
