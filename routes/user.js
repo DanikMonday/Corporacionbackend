@@ -4,12 +4,13 @@ const { encrypt } = require("../helper/handleBcrypt");
 const UserModel = require('../models/User');
 const { registerUser } = require('../controllers/controluser');
 const cAuth = require("../middleware/auth");
+const cRole = require("../middleware/role");
 const { compare } = require("../helper/handleBcrypt");
 const { tokenS } = require('../helper/genToken');
 const { recoveryMail } = require('../mail/configmail');
 
 //Registrar usuario como Administrador
-router.post("/sign", cAuth, registerUser);
+router.post("/sign", cAuth, cRole(['admin']), registerUser);
 
 //Ingresar usuario
 router.post("/login", async (req, res) => {
@@ -33,7 +34,7 @@ router.post("/login", async (req, res) => {
         }
 
         if (!lookPassword) {
-            res.send({message: "Contraseña invalida"});
+            res.send({message: "Contraseña inválida"});
             res.status(409);
             return;
         }}
