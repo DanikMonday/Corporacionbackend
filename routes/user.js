@@ -10,7 +10,7 @@ const { tokenS } = require('../helper/genToken');
 const { recoveryMail } = require('../mail/configmail');
 
 //Registrar usuario como Administrador
-router.post("/sign", cAuth, cRole(['admin']), registerUser);
+router.post("/sign", /*cAuth, cRole(['admin']), */registerUser);
 
 //Ingresar usuario
 router.post("/login", async (req, res) => {

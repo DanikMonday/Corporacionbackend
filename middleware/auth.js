@@ -10,7 +10,7 @@ const cAuth = async (req, res, next) =>{
             next();
         }else{
             res.status(409)
-            res.send({ error: "No tiene permiso para acceder"});
+            res.send({ messsage: "No tiene permiso para acceder"});
         }
     } catch (error) {
         console.log(error);
