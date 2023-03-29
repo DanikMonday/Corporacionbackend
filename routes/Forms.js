@@ -6,7 +6,7 @@ const cRole = require("../middleware/role");
 const {sendMail} = require("../mail/configmail")
 
 //Consultar Formularios
-router.get("/table", cAuth/*, cRole(['admin'])*/, getForm);
+router.get("/table", cAuth, getForm);
 
 //Crear Formulario
 router.post("/new", async (req, res)=>{
@@ -23,9 +23,9 @@ router.post("/new", async (req, res)=>{
 });
 
 //Modificar Formulario
-router.put("/modify/:id",/* cAuth,*/ modForm);
+router.put("/modify/:id", modForm);
 
 //Eliminar Formulario
-router.delete("/delete/:id", /*cAuth,*/ deleForm);
+router.delete("/delete/:id", cAuth, deleForm);
 
 module.exports = router;
