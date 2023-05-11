@@ -2,6 +2,11 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 
+header('Access-Control-Allow-Origin: *');
+
+header('Access-Control-Allow-Methods: GET, POST');
+
+header("Access-Control-Allow-Headers: X-Requested-With");
 
 const app = express();
 const PORT = process.env.PORT||3030;
